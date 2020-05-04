@@ -30,8 +30,8 @@ function copyPassword() {
   alert("Copiado la contraseña: " + copyText.value);
 }
 
-// copyIpfsHash
-function copyIpfsHash() {
+// copyIpfsHashDecripted
+function copyIpfsHashDecripted() {
   /* Toma el campo de texto */
   var copyText = document.getElementById("pwdEncrypt");
 
