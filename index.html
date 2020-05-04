@@ -65,9 +65,8 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="uploadProposal">Subir:</label>
             <div class="col-sm-10" onload="uploadFunction()">
-              <input type="file" id="myFile" multiple size="10" onchange="uploadFunction()">
+              <input type="file" id="myFile" multiple size="1" onchange="uploadFunction()">
               <p id="uploadFile"></p>   
-              <script src="./src/lib/upload.js"></script>
             </div onload="uploadFunction()">
           </div>
           <!-- Botón upload -->
@@ -76,8 +75,9 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
             <div class="col-sm-10">          
-              <input type="password" class="form-control" id="pwd" placeholder="Contraseña para encriptar su documento" name="pwd">
+              <input type="password" class="form-control" id="pwd" placeholder="Contraseña para encriptar su documento" name="pwdEncrypt" minlength="12">
               <h6 class="text-center">*Por su seguridad introduzca una constraseña segura: mínimo 12 caracteres, incluya máyusculas y minúsculas, números y símbolos</h6>
+              <!-- añadir restricción de tamaño al password minlength="2" -->
             </div>            
           </div>
           <!-- Box Contraseña -->
@@ -110,7 +110,7 @@
                 <div class="form-group">
                   
                   <!-- botón que copia el texto -->
-                  <label class="control-label col-sm-2" for="placeProposal">
+                  <label class="control-label col-sm-2" for="ipfsHash">
                     <button onclick="copyIpfsHash()" class="btnPopUp">
                       <img src="./src/assets/Icon_Copy.png" alt="Copiar">
                     </button>
@@ -142,7 +142,7 @@
 
                   <!-- Campo de texto -->
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="pwdEncrypt" value="1234567890">
+                    <input type="password" class="form-control" id="pwdEncrypt">
                   </div>
                   <!-- CAMBIAR VALUE ################################################### -->
                   <!-- Campo de texto -->
