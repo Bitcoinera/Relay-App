@@ -1,3 +1,4 @@
+// CopyIpfsHash
 function copyIpfsHash() {
   /* Toma el campo de texto */
   var copyText = document.getElementById("ipfsHash");
@@ -13,6 +14,7 @@ function copyIpfsHash() {
   alert("Copiado el código: " + copyText.value);
 }
 
+// CopyPassword
 function copyPassword() {
   /* Toma el campo de texto */
   var copyText = document.getElementById("pwdEncrypt");

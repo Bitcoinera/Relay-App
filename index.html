@@ -17,6 +17,7 @@
     <!-- Scripts -->
     <script src="./src/lib/tabs.js"></script>
     <script src="./src/lib/copybutton.js"></script>
+    <script src="./src/lib/upload.js"></script>
     <!-- Scripts -->
 
   </head>
@@ -89,10 +90,10 @@
 
       <!-- Botón Presentar Propuesta -->
       <div class="container">
-        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Presentar Propuesta</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#presentarModal">Presentar Propuesta</button>
       
         <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal fade" id="presentarModal" role="dialog">
           <div class="modal-dialog">
           
             <!-- Contenido del Modal -->
@@ -167,7 +168,7 @@
                 <!-- Última advertencia -->
               </div>
 
-              <!-- Footer -->
+              <!-- Footer Modal -->
               <div class="modal-footer">
                 <!-- Botón Presentar Propuesta -->
                 <button type="button" class="btn btn-primary btn-lg btn-block">He copiado los datos y deseo finalizar
@@ -176,26 +177,33 @@
                 <br>
                 
                 <!-- Logo -->
-                <div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
                   <a href="https://www.dteil.org">
                     <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
                   </a>
                 </div>
                 <!-- Logo -->
+
               </div>
-              <!-- Footer -->
+              <!-- Footer Modal -->
+
             </div>
             <!-- Contenido del Modal -->
+
           </div>
         </div>
         <!-- Modal -->
+
       </div>
       <!-- Botón Presentar Propuesta -->
 
       <br>
 
       <!-- Logo -->
-      <div>
+      <div class="col-sm-6"></div> <!-- chapuza para colocar la imagen a la derecha ###############-->
+      <div class="col-sm-4">
+        <br>
         <a href="https://www.dteil.org">
           <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
         </a>
@@ -203,41 +211,151 @@
       <!-- Logo -->
 
     </div>
-    <!-- Tab Presentar -->
+    <!-- Pestaña Presentar -->
 
     <!-- ##################################### -->
 
-    <!-- Tab Desbloquear -->
+    <!-- Pestaña Desbloquear -->
     <div id="Desbloquear" class="tabcontent">
-      
-      <!-- Box código IPFShash -->
-      <div class="form-group">
-        <label for="encryptedHash">Dirección de la propuesta encriptada:</label>
-        <input type="text" class="form-control" id="encryptedHash">
-      </div>
-      <!-- Box nº Propuesta -->
 
-      <!-- Box Contraseña -->
-      <div class="form-group">
-        <label for="pwd">Contraseña para desencriptar su documento:</label>
-        <input type="password" class="form-control" id="pwd">
+      <!-- Contenido de la Pestaña "Desbloquear" -->
+      <div class="container">
+        <form class="form-horizontal" action="/action_page.php"> <!-- CAMBIAR ACTION_PAGE -->
+          <br>
+
+          <!-- Box código encrypted IPFShash -->
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="encryptedHash">Propuesta:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="encryptedHash" placeholder="Dirección de la propuesta encriptada a desencriptar" name="encryptedHash">
+            </div>
+          </div>
+          <!-- Box código encrypted IPFShash -->
+
+          <!-- Box Contraseña desencriptar-->
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
+            <div class="col-sm-10">          
+              <input type="password" class="form-control" id="pwd" placeholder="Contraseña para desencriptar su propuesta previamente encriptada" name="pwd">
+            </div>            
+          </div>
+          <!-- Box Contraseña desencriptar-->
+
+        </form>
       </div>
-      <!-- Box Contraseña -->
+      <!-- Contenido de la Pestaña "Desbloquear" -->     
+
+      <br>
 
       <!-- Botón Desbloquear Propuesta -->
       <div class="container">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Desbloquear Propuesta</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#desbloquearModal">Desbloquear Propuesta</button>
+      
+        <!-- Modal desbloquear -->
+        <div class="modal fade" id="desbloquearModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Contenido del Modal Desbloquear -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"><strong>Su propuesta ya puede ser abierta</strong></h4>
+              </div>
+              <div class="modal-body">
+                <h4 class="text-center">Puede comprobar y compartir:</h4>
+
+                <!-- Box ipfsHash desencriptado -->
+                <h5>Código de su propuesta desencriptada:</h5>
+                <div class="form-group">
+                  
+                  <!-- botón que copia el texto -->
+                  <label class="control-label col-sm-2" for="ipfsHashDecripted">
+                    <button onclick="copyIpfsHash()" class="btnPopUp">
+                      <img src="./src/assets/Icon_Copy.png" alt="Copiar">
+                    </button>
+                  </label>
+                  <!-- botón que copia el texto -->
+
+                  <!-- Campo de texto -->
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ipfsHashDecripted" value="Qm00000000000000000000000">
+                  </div>
+                  <!-- CAMBIAR VALUE ################################################### -->
+                  <!-- Campo de texto -->
+                </div>
+                <!-- Box ipfsHash desencriptado -->
+
+                <br><br><br>
+
+                <!-- Box link IpfsHash Desencriptado -->
+                <h5>Link para ver su propuesta desencriptada:</h5>
+                <div class="form-group">
+                  
+                  <!-- Campo de texto -->
+                  <div class="col-sm-10">
+                    <a href="https://www.dweb.link/ipfs/Qm000000000000000000000000000">
+                      <h4>https://www.dweb.link/ipfs/Qm000000000000000000000000000</h4>
+                    </a>
+                  </div>
+                  <!-- CAMBIAR href y h4 ################################################### -->
+                  <!-- Campo de texto -->
+                </div>
+                <!-- Box Box link IpfsHash Desencriptado -->
+
+                <br><br>
+                                
+                <!-- Frase final -->
+                <div>
+                  <h4 class="text-center">ESTA PROPUESTA HA SIDO ENVIADA A LA ADMINISTRACIÓN PÚBLICA CORRESPONDIENTE</h4>
+                </div>
+                <!-- Frase final -->
+              </div>
+
+              <!-- Footer Modal -->
+              <div class="modal-footer">
+                <!-- Botón Finalizar desbloqueo -->
+                <button type="button" class="btn btn-primary btn-lg btn-block">
+                  Gracias por participar
+                </button>
+                <!-- Botón Finalizar desbloqueo -->
+                <br>
+                
+                <!-- Logo -->
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                  <a href="https://www.dteil.org">
+                    <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
+                  </a>
+                </div>
+                <!-- Logo -->
+
+              </div>
+              <!-- Footer Modal -->
+
+            </div>
+            <!-- Contenido del Modal Desbloquear -->
+
+          </div>
+        </div>
+        <!-- Modal desbloquear -->
+
       </div>
-      <!-- Botón Presentar Propuesta -->
+      <!-- Botón Desbloquear Propuesta -->
+
+      <br>
 
       <!-- Logo -->
-      <a href="dteil.org">
-        <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
-      </a>
+      <div class="col-sm-6"></div> <!-- chapuza para colocar la imagen a la derecha ###############-->
+      <div class="col-sm-4">
+        <br>
+        <a href="https://www.dteil.org">
+          <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
+        </a>
+      </div>
       <!-- Logo -->
 
     </div>
-    <!-- Tab Desbloquear -->
+    <!-- Pestaña Desbloquear -->
 
   </body>
 </html>
