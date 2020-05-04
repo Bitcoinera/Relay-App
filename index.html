@@ -31,8 +31,8 @@
 
     <!-- Pestañas -->
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Presentar')" id="defaultOpen">Presentar Propuesta</button>
-      <button class="tablinks" onclick="openTab(event, 'Desbloquear')">Desbloquear Propuesta</button>
+      <button class="tablinks col-sm-6" onclick="openTab(event, 'Presentar')" id="defaultOpen">Presentar Propuesta</button>
+      <button class="tablinks col-sm-6" onclick="openTab(event, 'Desbloquear')">Desbloquear Propuesta</button>
     </div>
 
     <!-- Pestaña Presentar -->
@@ -171,7 +171,7 @@
               <!-- Footer Modal -->
               <div class="modal-footer">
                 <!-- Botón Presentar Propuesta -->
-                <button type="button" class="btn btn-primary btn-lg btn-block">He copiado los datos y deseo finalizar
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">He copiado los datos y deseo finalizar
                 </button>
                 <!-- Botón Presentar Propuesta -->
                 <br>
@@ -199,17 +199,6 @@
       <!-- Botón Presentar Propuesta -->
 
       <br>
-
-      <!-- Logo -->
-      <div class="col-sm-6"></div> <!-- chapuza para colocar la imagen a la derecha ###############-->
-      <div class="col-sm-4">
-        <br>
-        <a href="https://www.dteil.org">
-          <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
-        </a>
-      </div>
-      <!-- Logo -->
-
     </div>
     <!-- Pestaña Presentar -->
 
@@ -314,7 +303,7 @@
               <!-- Footer Modal -->
               <div class="modal-footer">
                 <!-- Botón Finalizar desbloqueo -->
-                <button type="button" class="btn btn-primary btn-lg btn-block">
+                <button type="button" class="btn btn-primary btn-lg btn-block"  data-dismiss="modal">
                   Gracias por participar
                 </button>
                 <!-- Botón Finalizar desbloqueo -->
@@ -342,20 +331,20 @@
       </div>
       <!-- Botón Desbloquear Propuesta -->
 
-      <br>
-
-      <!-- Logo -->
-      <div class="col-sm-6"></div> <!-- chapuza para colocar la imagen a la derecha ###############-->
-      <div class="col-sm-4">
-        <br>
-        <a href="https://www.dteil.org">
-          <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
-        </a>
-      </div>
-      <!-- Logo -->
-
     </div>
     <!-- Pestaña Desbloquear -->
 
   </body>
+
+  <footer>
+    <!-- Logo -->
+    <div class="col-sm-6"></div> <!-- chapuza para colocar la imagen a la derecha ###############-->
+    <div class="col-sm-4">
+      <br>
+      <a href="https://www.dteil.org">
+        <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
+      </a>
+    </div>
+    <!-- Logo -->
+  </footer>
 </html>

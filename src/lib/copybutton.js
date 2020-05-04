@@ -33,7 +33,7 @@ function copyPassword() {
 // copyIpfsHashDecripted
 function copyIpfsHashDecripted() {
   /* Toma el campo de texto */
-  var copyText = document.getElementById("pwdEncrypt");
+  var copyText = document.getElementById("ipfsHashDecripted");
 
   /* Selecciona el campo de texto */
   copyText.select();
