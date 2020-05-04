@@ -10,7 +10,7 @@ function copyIpfsHash() {
   /* Copia el texto dentro del campo de texto */
   document.execCommand("copy");
 
-  /* Alerta a copiar  A QUITAR #################################*/
+  /* Alerta a copiar  ########### A QUITAR #################################*/
   alert("Copiado el código: " + copyText.value);
 }
 
@@ -26,6 +26,22 @@ function copyPassword() {
   /* Copia el texto dentro del campo de texto */
   document.execCommand("copy");
 
-  /* Alerta a copiar  A QUITAR #################################*/
+  /* Alerta a copiar  ########### A QUITAR #################################*/
   alert("Copiado la contraseña: " + copyText.value);
+}
+
+// copyIpfsHash
+function copyIpfsHash() {
+  /* Toma el campo de texto */
+  var copyText = document.getElementById("pwdEncrypt");
+
+  /* Selecciona el campo de texto */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copia el texto dentro del campo de texto */
+  document.execCommand("copy");
+
+  /* Alerta a copiar  ########### A QUITAR #################################*/
+  alert("Código propuesta desencriptada: " + copyText.value);
 }
