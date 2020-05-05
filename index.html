@@ -12,12 +12,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./src/css/tabs.css">
     <link rel="stylesheet" href="./src/css/copybutton.css">
+    <link rel="stylesheet" href="./src/css/pushrequired.css">
+
     <!-- Estilos -->
 
     <!-- Scripts -->
     <script src="./src/lib/tabs.js"></script>
     <script src="./src/lib/copybutton.js"></script>
     <script src="./src/lib/upload.js"></script>
+    <script src="./src/lib/pushbutton.js"></script>
+    <script src="./src/lib/pushrequired.js"></script>
     <!-- Scripts -->
 
   </head>
@@ -40,14 +44,14 @@
 
       <!-- Contenido de la Pestaña "Presentar" -->
       <div class="container">
-        <form class="form-horizontal" action="/action_page.php"> <!-- CAMBIAR ACTION_PAGE -->
+        <form class="form-horizontal" id="formPresentar"> <!-- CAMBIAR ACTION_PAGE ########################################################## -->
           <br>
 
           <!-- Box Lugar -->
           <div class="form-group">
             <label class="control-label col-sm-2" for="placeProposal">Lugar:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="placeProposal" placeholder="Lugar donde presentar la propuesta" name="placeProposal">
+              <input type="text" class="form-control" id="placeProposal" placeholder="Lugar donde presentar la propuesta" name="placeProposal" required>
             </div>
           </div>
           <!-- Box Lugar -->
@@ -56,7 +60,7 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="nProposal">Código:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="nProposal" placeholder="Número de la propuesta" name="nProposal">
+              <input type="text" class="form-control" id="nProposal" placeholder="Número de la propuesta" name="nProposal" required>
             </div>
           </div>
           <!-- Box nº Propuesta -->
@@ -75,128 +79,127 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
             <div class="col-sm-10">          
-              <input type="password" class="form-control" id="pwd" placeholder="Contraseña para encriptar su documento" name="pwdEncrypt" minlength="12">
-              <h6 class="text-center">*Por su seguridad introduzca una constraseña segura: mínimo 12 caracteres, incluya máyusculas y minúsculas, números y símbolos</h6>
-              <!-- añadir restricción de tamaño al password minlength="2" -->
+              <input type="text" class="form-control" id="pwd" placeholder="Contraseña para encriptar su documento" minlength="12" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}" title="Por su seguridad debe contener como mínimo 12 caracteres, incluyendo al menos una máyuscula y una minúscula" required>
             </div>            
           </div>
           <!-- Box Contraseña -->
+          
+          <br>
+          <!-- Botón Presentar Propuesta -->
+          <div class="container">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#presentarModal" id="btnSendProposal" onclick="pushFunction()" disabled>
+              Presentar Propuesta
+            </button>
+         
+            <!-- Modal -->
+            <div class="modal fade" id="presentarModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Contenido del Modal -->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center"><strong>Su licitación ha sido registrada</strong></h4>
+                  </div>
+                  <div class="modal-body">
+                    <h4 class="text-center">Copie y guarde los siguientes datos:</h4>
+    
+                    <!-- Box ipfsHash -->
+                    <h5>Código de su propuesta encriptada:</h5>
+                    <div class="form-group">
+    
+                      <!-- Campo de texto -->
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ipfsHash" value="Qm00000000000000000000000">
+                      </div>
+                      <!-- CAMBIAR VALUE ################################################### -->
+                      <!-- Campo de texto -->
+    
+                      <!-- botón que copia el texto -->
+                      <label class="control-label col-sm-2" for="ipfsHash">
+                        <button onclick="copyIpfsHash()" class="btnPopUp">
+                          <img src="./src/assets/Icon_Copy.png" alt="Copiar">
+                        </button>
+                      </label>
+                      <!-- botón que copia el texto -->
+                    </div>
+                    <!-- Box ipfsHash -->
+    
+                    <br><br><br>
+    
+                    <!-- Box Contraseña -->
+                    <h5>Contraseña utilizada encriptar su documento:</h5>
+                    <div class="form-group">
+                      
+                      <!-- Campo de texto -->
+                      <div class="container col-sm-10">
+                        <h4 class="form-control" id="pwdEncrypt"></h3>
+                      </div>
+                      <!-- Campo de texto -->
+    
+                      <!-- botón que copia el texto -->
+                      <label class="control-label col-sm-2" for="placeProposal">
+                        <button onclick="copyPassword()" class="btnPopUp">
+                          <img src="./src/assets/Icon_Copy.png" alt="Copiar">
+                        </button>
+                      </label>
+                      <!-- botón que copia el texto -->
+    
+                    </div>
+                    <!-- Box Contraseña -->
+    
+                    <br><br>
+                    <!-- Fecha de desbloqueo -->
+                    <div>
+                      <h4 class="text-center">Guárdelos en lugar seguro para<br>desbloquear su proyecto a partir del día:</h4>
+                      <div class="text-center">
+                        <input class="text-center" type="text" id="endDate" value="12/20/20">
+                      </div> <!-- INCLUIR LA FECHA ######################################## -->
+                    </div>
+                    <!-- Fecha de desbloqueo -->
+    
+                    <br>
+                    
+                    <!-- Última advertencia -->
+                    <div>
+                      <h4 class="text-center">ESTA INFORMACIÓN NO VOLVERÁ A MOSTRARSE <br>Y<br> USTED ES LA ÚNICA PERSONA QUE PODRÁ DESBLOQUEAR SU PROPUESTA</h4>
+                    </div>
+                    <!-- Última advertencia -->
+                  </div>
+    
+                  <!-- Footer Modal -->
+                  <div class="modal-footer">
+                    <!-- Botón Presentar Propuesta -->
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">He copiado los datos y deseo finalizar
+                    </button>
+                    <!-- Botón Presentar Propuesta -->
+                    <br>
+                    
+                    <!-- Logo -->
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                      <a href="https://www.dteil.org">
+                        <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
+                      </a>
+                    </div>
+                    <!-- Logo -->
+    
+                  </div>
+                  <!-- Footer Modal -->
+    
+                </div>
+                <!-- Contenido del Modal -->
+    
+              </div>
+            </div>
+            <!-- Modal -->
+    
+          </div>
+          <!-- Botón Presentar Propuesta -->            
 
         </form>
       </div>
-      <!-- Contenido de la Pestaña "Presentar" -->     
-
-      <br>
-
-      <!-- Botón Presentar Propuesta -->
-      <div class="container">
-        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#presentarModal">Presentar Propuesta</button>
-      
-        <!-- Modal -->
-        <div class="modal fade" id="presentarModal" role="dialog">
-          <div class="modal-dialog">
-          
-            <!-- Contenido del Modal -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-center"><strong>Su licitación ha sido registrada</strong></h4>
-              </div>
-              <div class="modal-body">
-                <h4 class="text-center">Copie y guarde los siguientes datos:</h4>
-
-                <!-- Box ipfsHash -->
-                <h5>Código de su propuesta encriptada:</h5>
-                <div class="form-group">
-                  
-                  <!-- botón que copia el texto -->
-                  <label class="control-label col-sm-2" for="ipfsHash">
-                    <button onclick="copyIpfsHash()" class="btnPopUp">
-                      <img src="./src/assets/Icon_Copy.png" alt="Copiar">
-                    </button>
-                  </label>
-                  <!-- botón que copia el texto -->
-
-                  <!-- Campo de texto -->
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ipfsHash" value="Qm00000000000000000000000">
-                  </div>
-                  <!-- CAMBIAR VALUE ################################################### -->
-                  <!-- Campo de texto -->
-                </div>
-                <!-- Box ipfsHash -->
-
-                <br><br><br>
-
-                <!-- Box Contraseña -->
-                <h5>Contraseña utilizada encriptar su documento:</h5>
-                <div class="form-group">
-                  
-                  <!-- botón que copia el texto -->
-                  <label class="control-label col-sm-2" for="placeProposal">
-                    <button onclick="copyPassword()" class="btnPopUp">
-                      <img src="./src/assets/Icon_Copy.png" alt="Copiar">
-                    </button>
-                  </label>
-                  <!-- botón que copia el texto -->
-
-                  <!-- Campo de texto -->
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="pwdEncrypt">
-                  </div>
-                  <!-- CAMBIAR VALUE ################################################### -->
-                  <!-- Campo de texto -->
-                </div>
-                <!-- Box Contraseña -->
-
-                <br><br>
-                <!-- Fecha de desbloqueo -->
-                <div>
-                  <h4 class="text-center">Guárdelos en lugar seguro para<br>desbloquear su proyecto a partir del día:</h4>
-                  <div class="text-center">
-                    <input class="text-center" type="text" id="endDate" value="12/20/20">
-                  </div> <!-- INCLUIR LA FECHA ######################################## -->
-                </div>
-                <!-- Fecha de desbloqueo -->
-
-                <br>
-                
-                <!-- Última advertencia -->
-                <div>
-                  <h4 class="text-center">ESTA INFORMACIÓN NO VOLVERÁ A MOSTRARSE <br>Y<br> USTED ES LA ÚNICA PERSONA QUE PODRÁ DESBLOQUEAR SU PROPUESTA</h4>
-                </div>
-                <!-- Última advertencia -->
-              </div>
-
-              <!-- Footer Modal -->
-              <div class="modal-footer">
-                <!-- Botón Presentar Propuesta -->
-                <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">He copiado los datos y deseo finalizar
-                </button>
-                <!-- Botón Presentar Propuesta -->
-                <br>
-                
-                <!-- Logo -->
-                <div class="col-sm-6"></div>
-                <div class="col-sm-6">
-                  <a href="https://www.dteil.org">
-                    <img class="img-responsive" src="./src/assets/Logo_dTeilorg_PoweredBy.png" alt="Powered by dTeilorg">
-                  </a>
-                </div>
-                <!-- Logo -->
-
-              </div>
-              <!-- Footer Modal -->
-
-            </div>
-            <!-- Contenido del Modal -->
-
-          </div>
-        </div>
-        <!-- Modal -->
-
-      </div>
-      <!-- Botón Presentar Propuesta -->
+      <!-- Contenido de la Pestaña "Presentar" -->
 
       <br>
     </div>
@@ -209,7 +212,7 @@
 
       <!-- Contenido de la Pestaña "Desbloquear" -->
       <div class="container">
-        <form class="form-horizontal" action="/action_page.php"> <!-- CAMBIAR ACTION_PAGE -->
+        <form class="form-horizontal"> <!-- CAMBIAR ACTION_PAGE -->
           <br>
 
           <!-- Box código encrypted IPFShash -->
@@ -223,9 +226,9 @@
 
           <!-- Box Contraseña desencriptar-->
           <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
+            <label class="control-label col-sm-2" for="pwdDecrypt">Contraseña:</label>
             <div class="col-sm-10">          
-              <input type="password" class="form-control" id="pwd" placeholder="Contraseña para desencriptar su propuesta previamente encriptada" name="pwd">
+              <input type="password" class="form-control" id="pwdDecrypt" placeholder="Contraseña para desencriptar su propuesta previamente encriptada" name="pwdDecrypt">
             </div>            
           </div>
           <!-- Box Contraseña desencriptar-->
@@ -346,5 +349,6 @@
       </a>
     </div>
     <!-- Logo -->
+
   </footer>
 </html>

@@ -17,7 +17,7 @@ function copyIpfsHash() {
 // CopyPassword
 function copyPassword() {
   /* Toma el campo de texto */
-  var copyText = document.getElementById("pwdEncrypt");
+  var copyText = document.getElementById("pwd");
 
   /* Selecciona el campo de texto */
   copyText.select();
