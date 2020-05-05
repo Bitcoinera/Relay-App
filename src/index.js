@@ -16,13 +16,14 @@ formPresentar.addEventListener('keyup', function () {
   isValidPlaceProposal = placeProposal.checkValidity();
   isValidNProposal = nProposal.checkValidity();
   isValidPwd = pwd.checkValidity();
-  isValidMyProposal = myProposal.checkValidity();
-  
-  if (isValidNProposal && isValidPlaceProposal && isValidPwd) {
-    btnSendProposal.disabled = false;
-  } else {
-    btnSendProposal.disabled = true;
-  }
+
+  if(myProposal.files.length == 1) {
+    if (isValidNProposal && isValidPlaceProposal && isValidPwd) {
+      btnSendProposal.disabled = false;
+    } else {
+      btnSendProposal.disabled = true;
+    }
+  } 
 });
 
 // btnSendProposal.addEventListener('click', function (event) {
