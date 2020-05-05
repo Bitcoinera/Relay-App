@@ -1,5 +1,5 @@
 function uploadFunction(){
-  var x = document.getElementById("myFile");
+  var x = document.getElementById("myProposal");
   var txt = "";
   if ('files' in x) {
     if (x.files.length == 0) {

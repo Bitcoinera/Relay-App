@@ -4,17 +4,21 @@ document.getElementById("defaultOpen").click();
 
 // Activación del botón de la pestaña "Presentar"
 const formPresentar = document.getElementById('formPresentar');
+
 const pwd = document.getElementById('pwd');
 const nProposal = document.getElementById('nProposal');
 const placeProposal = document.getElementById('placeProposal');
+const myProposal = document.getElementById("myProposal");
+
 const btnSendProposal = document.getElementById('btnSendProposal');
   
 formPresentar.addEventListener('keyup', function () {
   isValidPlaceProposal = placeProposal.checkValidity();
   isValidNProposal = nProposal.checkValidity();
   isValidPwd = pwd.checkValidity();
+  isValidMyProposal = myProposal.checkValidity();
   
-  if (isValidPwd && isValidNProposal && isValidPlaceProposal) {
+  if (isValidNProposal && isValidPlaceProposal && isValidPwd) {
     btnSendProposal.disabled = false;
   } else {
     btnSendProposal.disabled = true;
